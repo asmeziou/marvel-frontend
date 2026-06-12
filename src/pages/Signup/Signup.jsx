@@ -68,7 +68,7 @@ const Signup = ({ token, setToken }) => {
               handleChange(event, setPassword);
             }}
           />
-          <div>
+          <div className="newsletter">
             <input type="checkbox" />
             <span>S'inscrire à notre newsletter</span>
           </div>

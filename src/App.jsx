@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Personnages from "./pages/Personnages/Personnages";
 import Comics from "./pages/Comics/Comics";
@@ -26,6 +27,7 @@ const App = () => {
         comic={comic}
         setComic={setComic}
       />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -38,6 +40,7 @@ const App = () => {
         />
         <Route path="/personnage/:characterId" element={<Personnage />} />
         <Route path="/favoris" element={<Favoris token={token} />} />
+
         <Route
           path="/signup"
           element={<Signup token={token} setToken={setToken} />}
@@ -47,6 +50,7 @@ const App = () => {
           element={<Login token={token} setToken={setToken} />}
         />
       </Routes>
+      <Footer />
     </Router>
   );
 };
