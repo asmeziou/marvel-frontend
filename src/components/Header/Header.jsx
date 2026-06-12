@@ -1,6 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
+import { MdHome } from "react-icons/md";
+import { VscAccount } from "react-icons/vsc";
 
 import Logo from "../../assets/logo.png";
+import Swiperhome from "../Swiperhome/Swiperhome";
 import "./Header.css";
 const Header = ({
   character,
@@ -12,15 +15,16 @@ const Header = ({
 }) => {
   const location = useLocation();
   return (
-    <header>
-      <div className="wrapper">
+    <header className="header-main">
+      <div className="header-main-top">
         <div>
           <Link to="/">
             <img src={Logo} alt="logo MARVEL" />
           </Link>
         </div>
-        <div>
-          {location.pathname === "/personnages" && (
+
+        {location.pathname === "/personnages" && (
+          <div className="searchtext">
             <input
               type="text"
               name="character"
@@ -29,8 +33,10 @@ const Header = ({
               value={character}
               onChange={(e) => setCharacter(e.target.value)}
             />
-          )}
-          {location.pathname === "/comics" && (
+          </div>
+        )}
+        {location.pathname === "/comics" && (
+          <div className="searchtext">
             <input
               type="text"
               placeholder="Votre comic ..."
@@ -38,14 +44,14 @@ const Header = ({
               id="comic"
               value={comic}
               onChange={(event) => setComic(event.target.value)}
-            />
-          )}
-        </div>
-        <nav>
-          <Link to="/personnages">Personnages</Link>
-          <Link to="/comics">Comics</Link>
-          <Link to="/favoris">Favoris</Link>
+            />{" "}
+          </div>
+        )}
 
+        <div className="header-user-account">
+          <a href="/">
+            <MdHome /> Home
+          </a>
           {token ? (
             <button
               className="deco-button"
@@ -56,20 +62,36 @@ const Header = ({
                 Cookies.remove("vinted-auth-cookie");
               }}
             >
-              Se déconnecter
+              Déconnection
             </button>
           ) : (
             <div className="auth">
-              <Link to="/signup" className="auth-button">
+              {/* <Link to="/signup" className="auth-button">
                 S'inscrire
-              </Link>
+              </Link> */}
               <Link to="/login" className="auth-button">
-                Se connecter
+                <VscAccount /> Connexion
               </Link>
             </div>
           )}
-        </nav>
+        </div>
       </div>
+      <nav className="header-main-bottom ">
+        <ul>
+          <li>
+            <Link to="/personnages">Personnages</Link>
+          </li>
+          <li>
+            <Link to="/comics">Comics</Link>
+          </li>
+          <li>
+            <Link to="/favoris">Favoris</Link>
+          </li>
+        </ul>
+        <div className="fond-home">
+          <Swiperhome />;
+        </div>
+      </nav>
     </header>
   );
 };

@@ -1,0 +1,35 @@
+.pagination {
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.btn-pagination {
+  border: none;
+  background-color: red;
+  transform: skewX(-20deg);
+}
+.btn-pagination p {
+  transform: skewX(20deg);
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: white;
+}
+.page-pagination {
+  padding: 10px;
+  position: relative;
+  font-size: 1.1em;
+}
+.page-pagination:not(:last-child):after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  bottom: 0;
+  top: 0;
+  right: -5px;
+  margin: auto;
+  background-color: #e62429;
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/Pagination/Pagination";
 import "./Comics.css";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
 const Comics = ({ title, token }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -70,28 +71,38 @@ const Comics = ({ title, token }) => {
               limit={limit}
               pagesTab={pagesTab}
               data={data}
+              page={page}
             />
-            <section className="container-comics">
+            <section className="container-marvel">
               {data.results.map((element) => {
                 return (
                   <article key={element._id}>
-                    <Link to="">
-                      <img
-                        src={
-                          element.thumbnail.path +
-                          "." +
-                          element.thumbnail.extension
-                        }
-                        alt="image personnage"
-                      />
-                      <div>{element.title}</div>
-                      <div>
-                        <p>{element.description}</p>
-                      </div>
-                    </Link>
-                    <button onClick={() => addComicFavori(element._id)}>
-                      Ajouter aux favoris
-                    </button>
+                    <div>
+                      <Link to="">
+                        <img
+                          src={
+                            element.thumbnail.path +
+                            "." +
+                            element.thumbnail.extension
+                          }
+                          alt="image personnage"
+                        />
+                      </Link>
+                    </div>
+                    <div className="infos">
+                      <p> {element.title}</p>
+                      <p>
+                        {element.description &&
+                          element.description.slice(0, 100) + "..."}
+                      </p>
+                    </div>
+
+                    <div
+                      onClick={() => addComicFavori(element._id)}
+                      className="favoris"
+                    >
+                      <MdOutlineFavoriteBorder />
+                    </div>
                   </article>
                 );
               })}

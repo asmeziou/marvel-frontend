@@ -73,7 +73,7 @@ const Signup = ({ token, setToken }) => {
             <span>S'inscrire à notre newsletter</span>
           </div>
           <p>
-            Déjà un compte ?{" "}
+            Déjà un compte ?
             <Link
               to="/login"
               state={location.state ? { from: location.state.from } : null}

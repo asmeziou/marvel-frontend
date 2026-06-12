@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { MdOutlineFavoriteBorder } from "react-icons/md";
+
 import Pagination from "../../components/Pagination/Pagination";
 
 import "./Personnages.css";
@@ -9,8 +13,11 @@ const Personnages = ({ name, token }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
-
+  const navigate = useNavigate();
   const addCharacterFavori = async (character_id) => {
+    if (!token) {
+      navigate("/signup");
+    }
     try {
       const response = await axios.post(
         "https://site--exo-marvel-bakend--qzq5cmkqjv9w.code.run/favoris/character/add",
@@ -19,8 +26,7 @@ const Personnages = ({ name, token }) => {
           character_id,
         },
       );
-
-      console.log(response.data);
+      alert("Ajouté aux favoris ❤️");
     } catch (error) {
       console.error(error.response.data);
     }
@@ -73,24 +79,32 @@ const Personnages = ({ name, token }) => {
               limit={limit}
               pagesTab={pagesTab}
               data={data}
+              page={page}
             />
-            <section className="container-personnages">
+            <section className="container-marvel">
               {data.results.map((element) => {
                 return (
                   <article key={element._id}>
-                    <Link to={`/personnage/${element._id}`}>
-                      <img
-                        src={`${element.thumbnail.path}.${element.thumbnail.extension}`}
-                        alt={element.name}
-                      />
-                      <div>{element.name}</div>
-                      <div>
-                        <p>{element.description}</p>
-                      </div>
-                    </Link>
-                    <button onClick={() => addCharacterFavori(element._id)}>
-                      Ajouter aux favoris
-                    </button>
+                    <div>
+                      <Link to={`/personnage/${element._id}`}>
+                        <img
+                          src={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                          alt={element.name}
+                        />
+                      </Link>
+                    </div>
+                    <div className="infos">
+                      <p>{element.name}</p>
+
+                      <p>{element.description.slice(0, 100) + "..."}</p>
+                    </div>
+
+                    <div
+                      onClick={() => addCharacterFavori(element._id)}
+                      className="favoris"
+                    >
+                      <MdOutlineFavoriteBorder />
+                    </div>
                   </article>
                 );
               })}
