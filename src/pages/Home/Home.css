@@ -1,0 +1,51 @@
+/* .home-marvel {
+  padding: 50px 0;
+}
+.home-marvel img {
+} */
+.home h1 {
+  font-size: 2em;
+}
+.home h2 {
+  font-size: 1.6em;
+}
+.home h3 {
+  font-size: 1.2em;
+}
+.home h1,
+.home h3,
+.home h2 {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.section-home-marvel {
+  background: #1f1f1f;
+  margin: 50px 0;
+}
+.home-marvel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+.home-marvel img {
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.home-marvel-description {
+  color: white;
+  padding: 0 50px;
+}
+.home-follow-marvel {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.home-follow-marvel span svg {
+  width: 30px;
+  height: 30px;
+}

@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
 .container-marvel {
   display: flex;
   justify-content: space-evenly;
@@ -34,7 +38,7 @@ a {
   left: 0;
   right: 0;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.7);
+  background: #1f1f1f;
   color: white;
   opacity: 0;
   transform: translateY(100%);
@@ -56,4 +60,22 @@ a {
   align-items: center;
   justify-content: center;
   background-color: #ed1d24;
+}
+.btn-marvel {
+  border: none;
+  background-color: red;
+  transform: skewX(-20deg);
+  margin-bottom: 20px;
+}
+.btn-marvel span {
+  display: block;
+  transform: skewX(20deg);
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: white;
+  font-size: 1.2em;
+}
+.home-avertissement {
+  text-align: center;
+  padding: 50px 0;
 }
