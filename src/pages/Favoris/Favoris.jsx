@@ -2,6 +2,7 @@ import "./Favoris.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Audio } from "react-loader-spinner";
 import Personnage from "../Personnage/Personnage";
 
 const Favoris = ({ token }) => {
@@ -32,33 +33,48 @@ const Favoris = ({ token }) => {
   }, [token]);
 
   return (
-    <main>
+    <main className="main-favoris">
       <div className="wrapper">
         {isLoading ? (
-          <p>Chargement...</p>
+          <span>
+            <Audio
+              height="80"
+              width="80"
+              color="#ed1d24"
+              ariaLabel="audio-loading"
+              wrapperStyle={{}}
+              wrapperClass="wrapper-class"
+              visible={true}
+            />
+          </span>
         ) : (
-          <div>
-            <h1>Liste des Favoris Personnages: </h1>
+          <div className="liste-favoris">
+            <div>
+              <h3>Liste des Favoris Personnages </h3>
 
-            {data.favoritesCharacters.map((element, count) => {
-              return (
-                <p key={element}>
-                  <Link to={`/personnage/${element}`}>
-                    {`Personnage ${count + 1}`}
-                  </Link>
-                </p>
-              );
-            })}
-            <h1>Liste des Favoris Comics</h1>
-            {data.favoritesComics.map((element, count) => {
-              return (
-                <p key={element}>
-                  <Link to={`/personnage/${element}`}>
-                    {`Comic ${count + 1}`}
-                  </Link>
-                </p>
-              );
-            })}
+              {data.favoritesCharacters.map((element, count) => {
+                return (
+                  <p key={element}>
+                    <Link to={`/personnage/${element}`}>
+                      {`Personnage ${count + 1}`}
+                    </Link>
+                  </p>
+                );
+              })}
+            </div>
+            <div>
+              {" "}
+              <h3>Liste des Favoris Comics</h3>
+              {data.favoritesComics.map((element, count) => {
+                return (
+                  <p key={element}>
+                    <Link to={`/personnage/${element}`}>
+                      {`Comic ${count + 1}`}
+                    </Link>
+                  </p>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

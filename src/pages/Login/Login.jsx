@@ -1,5 +1,5 @@
 import "./Login.css";
-import handleChange from "../assets/utils/handleChange";
+import handleChange from "../../assets/utils/handleChange";
 import { Navigate, useNavigate, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import Cookies from "js-cookie";
@@ -29,15 +29,6 @@ const Login = ({ token, setToken }) => {
                   password: password,
                 },
               );
-              //   console.log(response.data);
-              // {
-              //     "_id": "6a228d2b4ab97e170fc0cec4",
-              //     "email": "wam@gmail",
-              //     "token": "16Ud6emWMCnioO-3KuCqm5g1-TwvmrJh1b7Xbrz82o8Xp-osaUgYHZI_02BiT2Ec",
-              //     "account": {
-              //         "username": "wam"
-              //     }
-              // }
 
               // il, va falloir un state pour y stocker le token
               setToken(response.data.token);
@@ -75,7 +66,9 @@ const Login = ({ token, setToken }) => {
               S'inscrire
             </Link>
           </p>
-          <button>Se connecter</button>
+          <button className="btn-marvel">
+            <span>Se connecter</span>
+          </button>
         </form>
       </div>
     </main>

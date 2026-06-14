@@ -81,7 +81,9 @@ const Signup = ({ token, setToken }) => {
               Se connecter
             </Link>
           </p>
-          <button>S'inscrire</button>
+          <button className="btn-marvel">
+            <span>S'inscrire</span>
+          </button>
         </form>
       </div>
     </main>

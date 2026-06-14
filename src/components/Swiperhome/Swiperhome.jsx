@@ -30,7 +30,7 @@ const Swiperhome = () => {
   };
 
   return (
-    <div>
+    <div className="swiper-carrousel-site">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -56,9 +56,9 @@ const Swiperhome = () => {
           <img src={swiper2} alt="" />
         </SwiperSlide>
       </Swiper>
-      <button onClick={toggleAutoplay}>
+      <div onClick={toggleAutoplay} className="play-stop">
         {playing ? <VscDebugPause /> : <FaCirclePlay />}
-      </button>
+      </div>
     </div>
   );
 };

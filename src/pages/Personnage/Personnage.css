@@ -1,14 +1,18 @@
+.main-personnage {
+  background: #eeeff2;
+}
 .container-personnage {
   display: flex;
-  gap: 20px;
-}
-.container-personnage section,
-.container-personnage > div {
-  padding: 40px;
-  border: 1px solid blue;
+  justify-content: center;
+  gap: 40px;
 }
 .container-personnage img {
-  width: 200px;
-  height: 200px;
+  width: 500px;
+  height: 500px;
   object-fit: cover;
+}
+
+.personnages-commics p {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ed1d24;
 }

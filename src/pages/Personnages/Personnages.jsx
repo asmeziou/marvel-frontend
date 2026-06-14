@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import { Audio } from "react-loader-spinner";
+
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 import Pagination from "../../components/Pagination/Pagination";
@@ -71,7 +73,17 @@ const Personnages = ({ name, token }) => {
     <main>
       <div className="wrapper">
         {isLoading ? (
-          <p>Chargement...</p>
+          <span>
+            <Audio
+              height="80"
+              width="80"
+              color="#ed1d24"
+              ariaLabel="audio-loading"
+              wrapperStyle={{}}
+              wrapperClass="wrapper-class"
+              visible={true}
+            />
+          </span>
         ) : (
           <>
             <Pagination
@@ -82,32 +94,36 @@ const Personnages = ({ name, token }) => {
               page={page}
             />
             <section className="container-marvel">
-              {data.results.map((element) => {
-                return (
-                  <article key={element._id}>
-                    <div>
-                      <Link to={`/personnage/${element._id}`}>
-                        <img
-                          src={`${element.thumbnail.path}.${element.thumbnail.extension}`}
-                          alt={element.name}
-                        />
-                      </Link>
-                    </div>
-                    <div className="infos">
-                      <p>{element.name}</p>
+              {data.results
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((element) => {
+                  return (
+                    <article key={element._id}>
+                      <div>
+                        <Link to={`/personnage/${element._id}`}>
+                          <img
+                            src={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                            alt={element.name}
+                          />
+                        </Link>
+                      </div>
+                      <div className="infos">
+                        <Link to={`/personnage/${element._id}`}>
+                          <p>{element.name}</p>
+                        </Link>
 
-                      <p>{element.description.slice(0, 100) + "..."}</p>
-                    </div>
+                        <p>{element.description.slice(0, 100) + "..."}</p>
+                      </div>
 
-                    <div
-                      onClick={() => addCharacterFavori(element._id)}
-                      className="favoris"
-                    >
-                      <MdOutlineFavoriteBorder />
-                    </div>
-                  </article>
-                );
-              })}
+                      <div
+                        onClick={() => addCharacterFavori(element._id)}
+                        className="favoris"
+                      >
+                        <MdOutlineFavoriteBorder />
+                      </div>
+                    </article>
+                  );
+                })}
             </section>
           </>
         )}

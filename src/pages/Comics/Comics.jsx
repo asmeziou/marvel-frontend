@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Pagination from "../../components/Pagination/Pagination";
 import "./Comics.css";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { Audio } from "react-loader-spinner";
 const Comics = ({ title, token }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -63,7 +64,17 @@ const Comics = ({ title, token }) => {
     <main>
       <div className="wrapper">
         {isLoading ? (
-          <p>Chargement...</p>
+          <span>
+            <Audio
+              height="80"
+              width="80"
+              color="#ed1d24"
+              ariaLabel="audio-loading"
+              wrapperStyle={{}}
+              wrapperClass="wrapper-class"
+              visible={true}
+            />
+          </span>
         ) : (
           <>
             <Pagination
@@ -74,38 +85,40 @@ const Comics = ({ title, token }) => {
               page={page}
             />
             <section className="container-marvel">
-              {data.results.map((element) => {
-                return (
-                  <article key={element._id}>
-                    <div>
-                      <Link to="">
-                        <img
-                          src={
-                            element.thumbnail.path +
-                            "." +
-                            element.thumbnail.extension
-                          }
-                          alt="image personnage"
-                        />
-                      </Link>
-                    </div>
-                    <div className="infos">
-                      <p> {element.title}</p>
-                      <p>
-                        {element.description &&
-                          element.description.slice(0, 100) + "..."}
-                      </p>
-                    </div>
+              {data.results
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((element) => {
+                  return (
+                    <article key={element._id}>
+                      <div>
+                        <Link to="">
+                          <img
+                            src={
+                              element.thumbnail.path +
+                              "." +
+                              element.thumbnail.extension
+                            }
+                            alt="image personnage"
+                          />
+                        </Link>
+                      </div>
+                      <div className="infos">
+                        <p> {element.title}</p>
+                        <p>
+                          {element.description &&
+                            element.description.slice(0, 100) + "..."}
+                        </p>
+                      </div>
 
-                    <div
-                      onClick={() => addComicFavori(element._id)}
-                      className="favoris"
-                    >
-                      <MdOutlineFavoriteBorder />
-                    </div>
-                  </article>
-                );
-              })}
+                      <div
+                        onClick={() => addComicFavori(element._id)}
+                        className="favoris"
+                      >
+                        <MdOutlineFavoriteBorder />
+                      </div>
+                    </article>
+                  );
+                })}
             </section>
           </>
         )}

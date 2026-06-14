@@ -1,0 +1,20 @@
+.main-favoris a {
+  color: #ed1d24;
+}
+.main-favoris a:hover {
+  color: #1f1f1f;
+}
+.liste-favoris {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.liste-favoris > div {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  margin-bottom: 40px;
+}
+.liste-favoris p {
+  border-bottom: 1px solid #ed1d24;
+  padding-bottom: 10px;
+}

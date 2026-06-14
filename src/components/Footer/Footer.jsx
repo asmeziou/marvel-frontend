@@ -30,9 +30,6 @@ const Footer = () => {
               <li>Redeem Digital Comics</li>
             </ul>
           </div>
-          <div>
-            <h3>Follow Marvel</h3>
-          </div>
         </div>
         <div className="footer-bottom">
           <ul>

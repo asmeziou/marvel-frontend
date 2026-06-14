@@ -10,7 +10,7 @@ import Comics from "./pages/Comics/Comics";
 import Favoris from "./pages/Favoris/Favoris";
 import Personnage from "./pages/Personnage/Personnage";
 import Signup from "./pages/Signup/Signup";
-import Login from "./Login/Login";
+import Login from "./pages/Login/Login";
 
 const App = () => {
   const [character, setCharacter] = useState();

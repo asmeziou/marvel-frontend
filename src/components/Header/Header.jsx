@@ -28,7 +28,7 @@ const Header = ({
             <input
               type="text"
               name="character"
-              placeholder="Votre personnage..."
+              placeholder="Search Character..."
               id="character"
               value={character}
               onChange={(e) => setCharacter(e.target.value)}
@@ -39,12 +39,12 @@ const Header = ({
           <div className="searchtext">
             <input
               type="text"
-              placeholder="Votre comic ..."
+              placeholder="Search Comic ..."
               name="comic"
               id="comic"
               value={comic}
               onChange={(event) => setComic(event.target.value)}
-            />{" "}
+            />
           </div>
         )}
 
@@ -62,13 +62,10 @@ const Header = ({
                 Cookies.remove("vinted-auth-cookie");
               }}
             >
-              Déconnection
+              Déconnexion
             </button>
           ) : (
             <div className="auth">
-              {/* <Link to="/signup" className="auth-button">
-                S'inscrire
-              </Link> */}
               <Link to="/login" className="auth-button">
                 <VscAccount /> Connexion
               </Link>
@@ -85,11 +82,11 @@ const Header = ({
             <Link to="/comics">Comics</Link>
           </li>
           <li>
-            <Link to="/favoris">Favoris</Link>
+            <Link to={token ? "/favoris" : "/signup"}>Favoris</Link>
           </li>
         </ul>
         <div className="fond-home">
-          <Swiperhome />;
+          <Swiperhome />
         </div>
       </nav>
     </header>

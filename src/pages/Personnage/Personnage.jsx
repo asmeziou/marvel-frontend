@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Audio } from "react-loader-spinner";
 import "./Personnage.css";
 
 const Personnage = () => {
@@ -26,14 +27,23 @@ const Personnage = () => {
   }, [characterId]);
 
   return (
-    <main>
+    <main className="main-personnage">
       <div className="wrapper">
         {isLoading ? (
-          <p>Chargement...</p>
+          <span>
+            <Audio
+              height="80"
+              width="80"
+              color="#ed1d24"
+              ariaLabel="audio-loading"
+              wrapperStyle={{}}
+              wrapperClass="wrapper-class"
+              visible={true}
+            />
+          </span>
         ) : (
           <div className="container-personnage">
             <div>
-              <h1>{data.name}</h1>
               <img
                 src={`${data.thumbnail.path}.${data.thumbnail.extension}`}
                 alt={data.name}
@@ -41,13 +51,16 @@ const Personnage = () => {
               <p>{data.description}</p>
             </div>
 
-            <section>
-              {data.comics.map((comic) => (
-                <article key={comic._id}>
-                  <h2>{comic.title}</h2>
-                </article>
-              ))}
-            </section>
+            <div className="personnages-commics">
+              <h1>{data.name}</h1>
+              <section>
+                {data.comics.map((comic) => (
+                  <div key={comic._id}>
+                    <p>{comic.title}</p>
+                  </div>
+                ))}
+              </section>
+            </div>
           </div>
         )}
       </div>
